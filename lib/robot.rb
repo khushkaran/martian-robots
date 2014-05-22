@@ -3,6 +3,7 @@ DIRECTIONS = ["N", "E", "S", "W"]
 class Robot
   attr_reader :position
   attr_reader :orientation
+  attr_accessor :lost
   def initialize(location)
     location = location.split(" ")
     @orientation = location[2]
@@ -30,6 +31,10 @@ class Robot
     new_dir = instruction == "R" ? cur_dir+1 : cur_dir-1
     new_dir = 0 if new_dir > DIRECTIONS.count-1
     DIRECTIONS[new_dir]
+  end
+
+  def lost!
+    @lost = true
   end
 end
 

@@ -11,6 +11,13 @@ describe Robot do
     expect(robot.orientation).to eq "E"
   end
 
+  context "Losing Robots" do
+    it "can be lost" do
+      robot.lost!
+      expect(robot.lost).to be true
+    end
+  end
+
   context "Moving Robot" do
     it "can turn right" do
       robot.follow_instructions("R")

@@ -1,7 +1,8 @@
 class Mars
   attr_reader :grid
-  def initialize(grid_size)
-    grid_size = grid_size.split(" ")
+  def initialize(instructions)
+    instructions = parse(instructions)
+    grid_size = instructions[0].slice!(0).split(" ")
     width = grid_size[0].to_i
     height = grid_size[1].to_i
     @grid = create_grid(width, height)
@@ -23,6 +24,11 @@ class Mars
     robots.reverse.map{|robot|
       "#{robot.position.join(" ")} #{robot.orientation}\n"
     }.join.chomp
+  end
+
+  def parse(instructions)
+    instructions = instructions.split("\n\n")
+    instructions.map!{|instruction| instruction.split("\n")}
   end
 end
 

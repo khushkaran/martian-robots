@@ -22,9 +22,7 @@ class Mars
   def earth_report
     report = ""
     robots.reverse.each_with_index{|robot, index|
-      report << robot.position.join(" ")
-      report << " "
-      report << robot.orientation
+      report << [robot.position.join(" "), robot.orientation].join(" ")
       report << "\n" unless index == robots.count-1
     }
     report

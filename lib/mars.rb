@@ -15,8 +15,8 @@ class Mars
     @grid.reverse[robot.position[1]][robot.position[0]] << robot
   end
 
-  def robots_count
-    @grid.flatten.count
+  def robots
+    @grid.flatten
   end
 end
 

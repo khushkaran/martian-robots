@@ -20,12 +20,12 @@ describe Mars do
   context "Adding robots" do
     before {mars.spawn_robot(robot1)}
     it "can spawn a robot" do
-      expect(mars.robots_count).to eq 1
+      expect(mars.robots.count).to eq 1
     end
 
     it "can spawn a second robot" do
       mars.spawn_robot(robot2)
-      expect(mars.robots_count).to eq 2
+      expect(mars.robots.count).to eq 2
     end
   end
 end

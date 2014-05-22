@@ -11,11 +11,13 @@ describe Robot do
     expect(robot.orientation).to eq "E"
   end
 
-  context "Losing Robots" do
-    it "can be lost" do
-      robot.lost!
-      expect(robot.lost).to be true
-    end
+  it "is not lost by default" do
+    expect(robot.lost).to be false
+  end
+
+  it "can be lost" do
+    robot.lost!
+    expect(robot.lost).to be true
   end
 
   context "Moving Robot" do

@@ -7,6 +7,7 @@ class Robot
   def initialize(location)
     location = location.split(" ")
     @orientation = location[2]
+    @lost = false
     x = location[0].to_i
     y = location[1].to_i
     @position = [x, y]

@@ -42,12 +42,15 @@ describe Mars do
     it "can respawn a robot" do
       mars2.spawn_robot(robot2)
       expect(mars2.robots.count).to eq 2
+      expect(mars2.grid.reverse[2][3]).to include robot2
       robot2.follow_instructions("F")
       mars2.respawn_robot(robot2)
       expect(mars2.robots.count).to eq 2
+      expect(mars2.grid.reverse[3][3]).to include robot2
       robot2.follow_instructions("RF")
       mars2.respawn_robot(robot2)
       expect(mars2.robots.count).to eq 2
+      expect(mars2.grid.reverse[3][4]).to include robot2
     end
 
     it "automatically spawns robots on initialisation" do

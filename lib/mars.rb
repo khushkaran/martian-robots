@@ -12,7 +12,6 @@ class Mars
       @instructions.each{|robot_instruction|
         robot = Robot.new(robot_instruction[0])
         spawn_robot(robot)
-        @prev_position = robot.position
         robot_instruction[1].chars.each{|move|
           robot.follow_instructions(move)
           if out_of_bounds?(robot.position)
@@ -22,7 +21,6 @@ class Mars
           else
             p robots.count
             respawn_robot(robot)
-            @prev_position = robot.position
           end
         }
         # p "#{robot.lost}>>>>>>>>>>>>>>>>>>>>>"
@@ -43,18 +41,13 @@ class Mars
   end
 
   def respawn_robot(robot)
-    p "#{robot.position}"
-    p robot
-    p @grid
-    @grid.flatten.reject!{|cur_robot|
-      cur_robot == robot
-    }
+    @grid.reverse[@prev_position[1]][@prev_position[0]].pop
     spawn_robot(robot)
-    p "#{robots.count}<<<<<<<<<<<<"
   end
 
   def spawn_robot(robot)
     @grid.reverse[robot.position[1]][robot.position[0]] << robot
+    @prev_position = robot.position
   end
 
   def robots

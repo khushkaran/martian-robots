@@ -16,14 +16,14 @@ class Robot
       if instruction == "F"
         raise NotYetImplemented
       else
-        cur_dir = DIRECTIONS.index(@orientation)
-        if instruction == "R"
-          @orientation = DIRECTIONS[cur_dir+1]
-        else
-          @orientation = DIRECTIONS[cur_dir-1]
-        end
+        @orientation = new_orientation(instruction)
       end
     }
+  end
+
+  def new_orientation(instruction)
+    cur_dir = DIRECTIONS.index(@orientation)
+    instruction == "R" ? DIRECTIONS[cur_dir+1] : DIRECTIONS[cur_dir-1]
   end
 end
 

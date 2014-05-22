@@ -8,6 +8,7 @@ describe Mars do
   let(:mars2) { Mars.new("5 3") }
   let(:robot1) {Robot.new("1 1 E")}
   let(:robot2) {Robot.new("3 2 N")}
+  let(:robot3) {Robot.new("0 3 W")}
 
   context "can be initialised with some instructions" do
     it "and has a height" do
@@ -37,7 +38,10 @@ describe Mars do
 
   context "Producing Report" do
     it "can return the report on the robots' positions" do
-      expect(mars.earth_report).to eq "1 1 E\n3 2 N\n0 3 W"
+      mars2.spawn_robot(robot1)
+      mars2.spawn_robot(robot2)
+      mars2.spawn_robot(robot3)
+      expect(mars2.earth_report).to eq "1 1 E\n3 2 N\n0 3 W"
     end
   end
 end

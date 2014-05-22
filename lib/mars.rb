@@ -8,22 +8,30 @@ class Mars
     @width = grid_size[0].to_i
     @height = grid_size[1].to_i
     @grid = create_grid(@width, @height)
+    send_robots
+  end
+
+  def send_robots
     if @instructions.flatten.count > 0
       @instructions.each{|robot_instruction|
         robot = Robot.new(robot_instruction[0])
         spawn_robot(robot)
-        robot_instruction[1].chars.each{|move|
-          robot.follow_instructions(move)
-          if out_of_bounds?(robot.position)
-            robot.position = @prev_position
-            respawn_robot(robot)
-            robot.lost! and break unless previous_position.count > 1
-          else
-            respawn_robot(robot)
-          end
-        }
+        make_move(robot, robot_instruction)
       }
     end
+  end
+
+  def make_move(robot, robot_instruction)
+    robot_instruction[1].chars.each{|move|
+      robot.follow_instructions(move)
+      if out_of_bounds?(robot.position)
+        robot.position = @prev_position
+        respawn_robot(robot)
+        robot.lost! and break unless previous_position.count > 1
+      else
+        respawn_robot(robot)
+      end
+    }
   end
 
   def out_of_bounds?(coordinate)

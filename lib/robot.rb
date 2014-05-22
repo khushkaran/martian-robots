@@ -13,23 +13,16 @@ class Robot
 
   def follow_instructions(instructions)
     instructions.chars.each{|instruction|
-      if instruction == "F"
-        x = @position[0]
-        y = @position[1]
-        case @orientation
-        when "N"
-          @position = [x,y+1]
-        when "E"
-          @position = [x+1,y]
-        when "S"
-          @position = [x,y-1]
-        when "W"
-          @position = [x-1,y]
-        end
-      else
-        @orientation = new_orientation(instruction)
-      end
+      instruction == "F" ? new_position : (@orientation = new_orientation(instruction))
     }
+  end
+
+  def new_position
+    x, y = @position[0], @position[1]
+    @position = [x,y+1] if @orientation == "N"
+    @position = [x+1,y] if @orientation == "E"
+    @position = [x,y-1] if @orientation == "S"
+    @position = [x-1,y] if @orientation == "W"
   end
 
   def new_orientation(instruction)

@@ -8,9 +8,11 @@ class Mars
     width = grid_size[0].to_i
     height = grid_size[1].to_i
     @grid = create_grid(width, height)
-    @instructions.each{|robot_instruction|
-      spawn_robot(Robot.new(robot_instruction[0]))
-    }
+    if @instructions.flatten.count > 0
+      @instructions.each{|robot_instruction|
+        spawn_robot(Robot.new(robot_instruction[0]))
+      }
+    end
   end
 
   def create_grid(width, height)

@@ -17,14 +17,13 @@ class Mars
           if out_of_bounds?(robot.position)
             robot.position = @prev_position
             respawn_robot(robot)
-            robot.lost! and break unless @grid.reverse[@prev_position[1]][@prev_position[0]].count > 1
+            robot.lost! and break unless previous_position.count > 1
           else
             respawn_robot(robot)
           end
         }
       }
     end
-    # p @grid
   end
 
   def out_of_bounds?(coordinate)
@@ -38,8 +37,12 @@ class Mars
     (0..height).map{|row|(0..width).map{|col|[]}}.reverse
   end
 
+  def previous_position
+    @grid.reverse[@prev_position[1]][@prev_position[0]]
+  end
+
   def respawn_robot(robot)
-    @grid.reverse[@prev_position[1]][@prev_position[0]].pop
+    previous_position.pop
     spawn_robot(robot)
   end
 

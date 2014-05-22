@@ -8,11 +8,7 @@ class Mars
   end
 
   def create_grid(width, height)
-    (0..height).map{|row_number|
-      (0..width).map{|column_number|
-        [column_number, row_number]
-      }
-    }.reverse
+    (0..height).map{|row|(0..width).map{|col|[]}}.reverse
   end
 end
 

@@ -1,11 +1,16 @@
+require 'robot'
 class Mars
   attr_reader :grid
+  attr_reader :instructions
   def initialize(instructions)
-    instructions = parse(instructions)
-    grid_size = instructions[0].slice!(0).split(" ")
+    @instructions = parse(instructions)
+    grid_size = @instructions[0].slice!(0).split(" ")
     width = grid_size[0].to_i
     height = grid_size[1].to_i
     @grid = create_grid(width, height)
+    @instructions.each{|robot_instruction|
+      spawn_robot(Robot.new(robot_instruction[0]))
+    }
   end
 
   def create_grid(width, height)

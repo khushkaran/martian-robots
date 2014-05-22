@@ -5,24 +5,37 @@ class Mars
   def initialize(instructions)
     @instructions = parse(instructions)
     grid_size = @instructions[0].slice!(0).split(" ")
-    width = grid_size[0].to_i
-    height = grid_size[1].to_i
-    @grid = create_grid(width, height)
+    @width = grid_size[0].to_i
+    @height = grid_size[1].to_i
+    @grid = create_grid(@width, @height)
     if @instructions.flatten.count > 0
       @instructions.each{|robot_instruction|
         robot = Robot.new(robot_instruction[0])
         spawn_robot(robot)
+        @prev_position = robot.position
         robot_instruction[1].chars.each{|move|
           robot.follow_instructions(move)
-          x = robot.position[0]
-          y = robot.position[1]
-          puts "#{x} > #{width} || #{y} > #{height} || #{robot.position}"
-          robot.lost! and break if x > width || y > height
+          if out_of_bounds?(robot.position)
+            robot.position = @prev_position
+            respawn_robot(robot)
+            robot.lost! and break
+          else
+            p robots.count
+            respawn_robot(robot)
+            @prev_position = robot.position
+          end
         }
-        p "#{robot.lost}>>>>>>>>>>>>>>>>>>>>>"
+        # p "#{robot.lost}>>>>>>>>>>>>>>>>>>>>>"
       }
     end
-    p @grid
+    # p @grid
+  end
+
+  def out_of_bounds?(coordinate)
+    x, y = coordinate[0], coordinate[1]
+    return true if x > @width || x < 0
+    return true if y > @height || y < 0
+    false
   end
 
   def create_grid(width, height)
@@ -30,8 +43,14 @@ class Mars
   end
 
   def respawn_robot(robot)
-    @grid.flatten.reject{|cur_robot| cur_robot == robot}
+    p "#{robot.position}"
+    p robot
+    p @grid
+    @grid.flatten.reject!{|cur_robot|
+      cur_robot == robot
+    }
     spawn_robot(robot)
+    p "#{robots.count}<<<<<<<<<<<<"
   end
 
   def spawn_robot(robot)

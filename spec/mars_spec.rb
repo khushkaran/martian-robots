@@ -10,6 +10,12 @@ describe Mars do
   let(:robot2) {Robot.new("3 2 N")}
   let(:robot3) {Robot.new("0 3 W")}
 
+  it "knows if a co-ordinate is out of bounds" do
+    expect(mars2.out_of_bounds?([5, 4])).to be true
+    expect(mars2.out_of_bounds?([-1, 4])).to be true
+    expect(mars2.out_of_bounds?([4, 1])).to be false
+  end
+
   context "can be initialised with some instructions" do
     it "and has a height" do
       expect(mars.grid.length).to eq 4
@@ -24,15 +30,22 @@ describe Mars do
     before {mars2.spawn_robot(robot1)}
     it "can spawn a robot" do
       expect(mars2.robots.count).to eq 1
+      expect(mars2.grid.reverse[1][1]).to include robot1
     end
 
     it "can spawn a second robot" do
       mars2.spawn_robot(robot2)
       expect(mars2.robots.count).to eq 2
+      expect(mars2.grid.reverse[2][3]).to include robot2
     end
 
     it "can respawn a robot" do
+      mars2.spawn_robot(robot2)
+      expect(mars2.robots.count).to eq 2
       robot2.follow_instructions("F")
+      mars2.respawn_robot(robot2)
+      expect(mars2.robots.count).to eq 2
+      robot2.follow_instructions("RF")
       mars2.respawn_robot(robot2)
       expect(mars2.robots.count).to eq 2
     end

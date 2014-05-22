@@ -27,7 +27,9 @@ class Robot
 
   def new_orientation(instruction)
     cur_dir = DIRECTIONS.index(@orientation)
-    instruction == "R" ? DIRECTIONS[cur_dir+1] : DIRECTIONS[cur_dir-1]
+    new_dir = instruction == "R" ? cur_dir+1 : cur_dir-1
+    new_dir = 0 if new_dir > DIRECTIONS.count-1
+    DIRECTIONS[new_dir]
   end
 end
 

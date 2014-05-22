@@ -12,16 +12,38 @@ describe Robot do
   end
 
   context "Moving Robot" do
-    it "can change orientation" do
+    it "can turn right" do
       robot.follow_instructions("R")
       expect(robot.orientation).to eq "S"
-      robot.follow_instructions("LL")
+      robot.follow_instructions("R")
+      expect(robot.orientation).to eq "W"
+      robot.follow_instructions("R")
       expect(robot.orientation).to eq "N"
+      robot.follow_instructions("R")
+      expect(robot.orientation).to eq "E"
+    end
+
+    it "can turn left" do
+      robot.follow_instructions("L")
+      expect(robot.orientation).to eq "N"
+      robot.follow_instructions("L")
+      expect(robot.orientation).to eq "W"
+      robot.follow_instructions("L")
+      expect(robot.orientation).to eq "S"
+      robot.follow_instructions("L")
+      expect(robot.orientation).to eq "E"
     end
 
     it "can move forward" do
       robot.follow_instructions("F")
       expect(robot.position).to eq [2,1]
+    end
+
+    xit "can follow multiple instructions" do
+      robot.follow_instructions("RFRFRFRF")
+      raise "#{robot.position} #{robot.orientation}"
+      expect(robot.position).to eq [1,1]
+      expect(robot.orientation).to eq "E"
     end
   end
 end

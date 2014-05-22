@@ -28,4 +28,15 @@ describe Mars do
       expect(mars.robots.count).to eq 2
     end
   end
+
+  context "Producing Report" do
+    before{
+      mars.spawn_robot(robot1)
+      mars.spawn_robot(robot2)
+      mars.spawn_robot(robot3)
+    }
+    it "can return the report on the robots' positions" do
+      expect(mars.earth_report).to eq "1 1 E\n3 2 N\n0 3 W"
+    end
+  end
 end

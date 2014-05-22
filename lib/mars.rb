@@ -18,5 +18,16 @@ class Mars
   def robots
     @grid.flatten
   end
+
+  def earth_report
+    report = ""
+    robots.reverse.each_with_index{|robot, index|
+      report << robot.position.join(" ")
+      report << " "
+      report << robot.orientation
+      report << "\n" unless index == robots.count-1
+    }
+    report
+  end
 end
 

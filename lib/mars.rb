@@ -12,7 +12,7 @@ class Mars
       (0..width).map{|column_number|
         [column_number, row_number]
       }
-    }
+    }.reverse
   end
 end
 

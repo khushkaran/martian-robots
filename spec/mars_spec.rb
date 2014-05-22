@@ -10,7 +10,6 @@ describe Mars do
 
     it "and has a width" do
       expect(mars.grid[0].length).to eq 6
-      p mars.grid
     end
   end
 end

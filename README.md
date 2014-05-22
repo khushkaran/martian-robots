@@ -59,10 +59,15 @@ strings will be less than 100 characters in length.
 
 ##### Sample Input
 ```
-53
-11E RFRFRFRF
-32N FRRFLLFFRRFLL
-03W LLFFFLFLFL
+5 3
+1 1 E
+RFRFRFRF
+
+3 2 N
+FRRFLLFFRRFLL
+
+0 3 W
+LLFFFLFLFL
 ```
 
 ### The Output
@@ -74,9 +79,9 @@ position and orientation.
 
 ##### Sample Output
 ```
-11E
-33NLOST
-23S
+1 1 E
+3 3 N LOST
+2 3 S
 ```
 
 ### The Technologies

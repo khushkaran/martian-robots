@@ -8,6 +8,6 @@ describe Robot do
   end
 
   it "can be initialised with an orientation" do
-    expect(robot.position).to eq ["E"]
+    expect(robot.orientation).to eq "E"
   end
 end

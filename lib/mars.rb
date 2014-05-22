@@ -10,5 +10,13 @@ class Mars
   def create_grid(width, height)
     (0..height).map{|row|(0..width).map{|col|[]}}.reverse
   end
+
+  def spawn_robot(robot)
+    @grid.reverse[robot.position[1]][robot.position[0]] << robot
+  end
+
+  def robots_count
+    @grid.flatten.count
+  end
 end
 

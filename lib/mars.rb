@@ -17,13 +17,11 @@ class Mars
           if out_of_bounds?(robot.position)
             robot.position = @prev_position
             respawn_robot(robot)
-            robot.lost! and break
+            robot.lost! and break unless @grid.reverse[@prev_position[1]][@prev_position[0]].count > 1
           else
-            p robots.count
             respawn_robot(robot)
           end
         }
-        # p "#{robot.lost}>>>>>>>>>>>>>>>>>>>>>"
       }
     end
     # p @grid
@@ -56,7 +54,7 @@ class Mars
 
   def earth_report
     robots.reverse.map{|robot|
-      "#{robot.position.join(" ")} #{robot.orientation}\n"
+      "#{robot.position.join(" ")} #{robot.orientation}#{" LOST" if robot.lost}\n"
     }.join.chomp
   end
 

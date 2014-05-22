@@ -10,13 +10,28 @@ class Mars
     @grid = create_grid(width, height)
     if @instructions.flatten.count > 0
       @instructions.each{|robot_instruction|
-        spawn_robot(Robot.new(robot_instruction[0]))
+        robot = Robot.new(robot_instruction[0])
+        spawn_robot(robot)
+        robot_instruction[1].chars.each{|move|
+          robot.follow_instructions(move)
+          x = robot.position[0]
+          y = robot.position[1]
+          puts "#{x} > #{width} || #{y} > #{height} || #{robot.position}"
+          robot.lost! and break if x > width || y > height
+        }
+        p "#{robot.lost}>>>>>>>>>>>>>>>>>>>>>"
       }
     end
+    p @grid
   end
 
   def create_grid(width, height)
     (0..height).map{|row|(0..width).map{|col|[]}}.reverse
+  end
+
+  def respawn_robot(robot)
+    @grid.flatten.reject{|cur_robot| cur_robot == robot}
+    spawn_robot(robot)
   end
 
   def spawn_robot(robot)

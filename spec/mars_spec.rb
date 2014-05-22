@@ -31,8 +31,20 @@ describe Mars do
       expect(mars2.robots.count).to eq 2
     end
 
+    it "can respawn a robot" do
+      robot2.follow_instructions("F")
+      mars2.respawn_robot(robot2)
+      expect(mars2.robots.count).to eq 2
+    end
+
     it "automatically spawns robots on initialisation" do
       expect(mars.robots.count).to eq 3
+    end
+  end
+
+  context "Robots Following Instructions" do
+    specify "automatically instructs robots on initialisation" do
+      expect(mars.earth_report).to eq "1 1 E\n3 3 N LOST\n2 3 S"
     end
   end
 

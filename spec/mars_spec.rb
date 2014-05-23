@@ -47,7 +47,8 @@ describe Mars do
       mars2.respawn_robot(robot2)
       expect(mars2.robots.count).to eq 2
       expect(mars2.grid.reverse[3][3]).to include robot2
-      robot2.follow_instructions("RF")
+      robot2.follow_instructions("R")
+      robot2.follow_instructions("F")
       mars2.respawn_robot(robot2)
       expect(mars2.robots.count).to eq 2
       expect(mars2.grid.reverse[3][4]).to include robot2

@@ -21,11 +21,18 @@ describe Mars do
     end
   end
 
-  context "Producing Report" do
-    it "can return the report on the robots' positions" do
+  context "Robots and reporting" do
+    before{
       mars.grid[1][1] << Robot.new("1 1 E")
       mars.grid[2][3] << Robot.new("3 2 N")
       mars.grid[3][0] << Robot.new("0 3 W")
+    }
+
+    it "knows how many robots there are" do
+      expect(mars.robots.count).to eq 3
+    end
+    
+    it "can return the report on the robots' positions" do
       expect(mars.earth_report).to eq "0 3 W\n3 2 N\n1 1 E"
     end
   end

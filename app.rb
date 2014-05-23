@@ -10,7 +10,12 @@ get '/' do
 end
 
 post '/' do
-  comcen = CommandCentre.new(params[:instructions])
+  comcen = CommandCentre.new(params[:instructions].delete("\r"))
   session[:report] = comcen.mars.earth_report
+  redirect '/'
+end
+
+get '/new_instructions' do
+  session[:report] = nil
   redirect '/'
 end

@@ -15,9 +15,9 @@
 </div>
 <div id="report-div">
   <h2>Report</h2>
-  <form>
-    <textarea id="report"><%= @report %></textarea><br>
-    <input type="submit" value="New Instructions">
+  <textarea id="report"><%= @report %></textarea><br>
+  <form action="/new_instructions" method="get">
+    <button>New Instructions</button>
   </form>
 </div>
 </body>

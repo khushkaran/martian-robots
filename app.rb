@@ -1,5 +1,5 @@
 require "sinatra"
-require "command_centre"
+require_relative "lib/command_centre"
 
 get '/' do
   erb :index

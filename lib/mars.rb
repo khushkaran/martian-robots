@@ -1,4 +1,4 @@
-require 'robot'
+require_relative 'robot'
 
 class Mars
   attr_accessor :grid

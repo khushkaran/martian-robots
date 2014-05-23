@@ -1,4 +1,4 @@
-require "mars"
+require_relative "mars"
 
 class CommandCentre
   attr_reader :instructions

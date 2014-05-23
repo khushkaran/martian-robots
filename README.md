@@ -1,6 +1,6 @@
-Martian Robots
+Martian Robots [![Code Climate](https://codeclimate.com/github/khushkaran/martian-robots.png)](https://codeclimate.com/github/khushkaran/martian-robots)
 ---
-
+![](screenshot.png?raw=true)
 ### The Problem
 
 The surface of Mars can be modelled by a rectangular grid
@@ -88,5 +88,10 @@ position and orientation.
 - Ruby
 - RSpec
 - Git(Hub)
+- Sinatra
+- Shotgun
 
 ### The Instructions
+To run the application run `shotgun` and visit
+`localhost:9393` in the browser. It is also live on
+Heroku, just visit http://martian-robot.herokuapp.com.

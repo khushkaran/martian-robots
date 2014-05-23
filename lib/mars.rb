@@ -1,9 +1,6 @@
 require 'robot'
 class Mars
   attr_accessor :grid
-  attr_reader :instructions
-  attr_reader :width
-  attr_reader :height
 
   def initialize(grid_size)
     @width = grid_size[0].to_i

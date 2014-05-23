@@ -47,11 +47,5 @@ describe Robot do
       robot.follow_instructions("F")
       expect(robot.position).to eq [2,1]
     end
-
-    it "can follow multiple instructions" do
-      robot.follow_instructions("RFRFRFRF")
-      expect(robot.position).to eq [1,1]
-      expect(robot.orientation).to eq "E"
-    end
   end
 end

@@ -13,10 +13,8 @@ class Robot
     @position = [x, y]
   end
 
-  def follow_instructions(instructions)
-    instructions.chars.each{|instruction|
-      instruction == "F" ? (@position = new_position) : (@orientation = new_orientation(instruction))
-    }
+  def follow_instructions(instruction)
+    instruction == "F" ? (@position = new_position) : (@orientation = new_orientation(instruction))
   end
 
   def new_position

@@ -20,6 +20,14 @@ describe Robot do
     expect(robot.lost).to be true
   end
 
+  it "knows its previous position" do
+    expect(robot.previous_position).to eq [1,1]    
+    robot.follow_instructions("F")
+    expect(robot.previous_position).to eq [1,1]
+    robot.follow_instructions("F")
+    expect(robot.previous_position).to eq [2,1]
+  end
+
   context "Moving Robot" do
     it "can turn right" do
       robot.follow_instructions("R")

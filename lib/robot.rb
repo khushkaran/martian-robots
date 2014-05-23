@@ -4,7 +4,8 @@ class Robot
   attr_accessor :position
   attr_reader :orientation
   attr_reader :lost
-  
+  attr_accessor :previous_position
+
   def initialize(location)
     location = location.split(" ")
     @orientation = location[2]
@@ -12,6 +13,7 @@ class Robot
     x = location[0].to_i
     y = location[1].to_i
     @position = [x, y]
+    @previous_position = @position if !@previous_position
   end
 
   def follow_instructions(instruction)
@@ -19,6 +21,7 @@ class Robot
   end
 
   def new_position
+    @previous_position = @position
     x, y = @position[0], @position[1]
     return [x,y+1] if @orientation == "N"
     return [x+1,y] if @orientation == "E"

@@ -6,6 +6,20 @@
 </head>
 <body>
 <h1>Command Centre</h1>
+
+<div id="example-div">
+  <h2>Example Instructions</h2>
+  <textarea readonly name="instructions">5 3
+1 1 E
+RFRFRFRF
+
+3 2 N
+FRRFLLFFRRFLL
+
+0 3 W
+LLFFFLFLFL</textarea>
+</div>
+
 <div id="instructions-div">
   <h2>Instructions</h2>
   <form action="/" method="post">
@@ -13,6 +27,7 @@
     <input type="submit" value="Submit Instructions">
   </form>
 </div>
+
 <div id="report-div">
   <h2>Report</h2>
   <textarea id="report"><%= @report %></textarea><br>
@@ -20,5 +35,6 @@
     <button>New Instructions</button>
   </form>
 </div>
+
 </body>
 </html>

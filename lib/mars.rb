@@ -1,4 +1,5 @@
 require 'robot'
+
 class Mars
   attr_accessor :grid
 

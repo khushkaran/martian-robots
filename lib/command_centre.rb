@@ -3,6 +3,7 @@ require "mars"
 class CommandCentre
   attr_reader :instructions
   attr_reader :mars
+  
   def initialize(instructions)
     @instructions = parse(instructions)
     grid_size = @instructions[0].slice!(0).split(" ")

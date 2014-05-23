@@ -3,7 +3,8 @@ DIRECTIONS = ["N", "E", "S", "W"]
 class Robot
   attr_accessor :position
   attr_reader :orientation
-  attr_accessor :lost
+  attr_reader :lost
+  
   def initialize(location)
     location = location.split(" ")
     @orientation = location[2]

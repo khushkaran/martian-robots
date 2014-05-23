@@ -10,3 +10,17 @@ h1{
 h2{
   color: red;
 }
+
+textarea{
+  width: 300px;
+  height: 500px;
+  resize: none;
+}
+
+div{
+  display: inline-block;
+}
+
+#report{
+  margin-bottom: 19px
+}
